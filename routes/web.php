@@ -7,10 +7,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-ROute::get('/sapa', function () {
-    return 'halo kelompok 6';
-});
-
 ROute::get('/katalog',
     [KatalogController::class, 'index']
 )->name('katalog.index');

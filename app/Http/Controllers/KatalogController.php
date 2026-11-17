@@ -13,31 +13,33 @@ class KatalogController extends Controller
         $q = $request->input('q', '');
 
         $produk = [
-        ['id' => 'PRD-001',
+        ['id' => 'BK-01',
         'nama' => 'Laskar Pelangi',
         'kategori' => 'Buku',
         'harga' => 20000,
         'stok' => 12,
         'status' => 'Aktif'],
-        ['id' => 'PRD-002',
+        ['id' => 'BK-02',
         'nama' => 'Almon',
         'kategori' => 'Buku',
         'harga' => 20000,
         'stok' => 10,
         'status' => 'Aktif'],
-        ['id' => 'PRD-003',
+        ['id' => 'BK-03',
         'nama' => 'Pen',
         'kategori' => 'Alat tulis',
         'harga' => 5000,
         'stok' => 20,
         'status' => 'Aktif'],
-        ['id' => 'PRD-004',
+        ['id' => 'BK-04',
         'nama' => 'Janji',
         'kategori' => 'Buku',
         'harga' => 25000,
         'stok' => 14,
         'status' => 'Aktif'],
     ];
+
+    $kategoriPilihan = $request->input('kategori');
 
     if (!empty($q)){
         $produk = array_filter($produk, function ($item) use ($q){

@@ -1,10 +1,13 @@
 <!doctype html>
 <html lang="id">
+
 <head>
- <title>@yield('title', 'Kasir Ende')</title>
+    <title>@yield('title', 'Kasir Ende')</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body>
- <header>Kasir Ende</header>
- <main>@yield('content')</main>
+    <main>@yield('content')</main>
 </body>
+
 </html>

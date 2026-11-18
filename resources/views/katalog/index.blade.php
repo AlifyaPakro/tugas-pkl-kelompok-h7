@@ -187,48 +187,51 @@
                     </h2>
 
                     @if(count($produk) > 0)
-                        @php $first = $produk[0]; @endphp
-                        <div id="detail-nama" class="text-base font-bold text-gray-900 mb-3">
-                            {{ $first['nama'] }}
-                        </div>
-
-                        {{-- Harga Dasar --}}
-                        <div class="bg-[#ececec] p-4 mb-3">
-                            <div class="text-xs text-gray-600 mb-1">Harga dasar</div>
-                            <div id="detail-harga" class="text-2xl font-bold text-gray-900">
-                                Rp{{ number_format($first['harga'], 0, ',', '.') }}
-                            </div>
-                        </div>
-
-                        {{-- Stok & Nomor Rak --}}
-                        <div class="grid grid-cols-2 gap-3 mb-4">
-                            <div class="bg-[#ececec] p-4">
-                                <div class="text-xs text-gray-600 mb-1">Stok tersisa</div>
-                                <div id="detail-stok" class="text-lg font-bold {{ $first['stok'] > 0 ? 'text-gray-900' : 'text-red-600' }}">
-                                    {{ $first['stok'] > 0 ? $first['stok'] . ' unit' : 'Stok habis' }}
+                        @foreach($produk as $item)
+                            <div class="product-item mb-4 border-b pb-4">
+            
+                                {{-- Nama Produk --}}
+                                <div id="detail-nama" class="text-base font-bold text-gray-900 mb-3">
+                                    {{ $item['nama'] }}
+                                </div>
+                                {{-- Harga Dasar --}}
+                                <div class="bg-[#ececec] p-4 mb-3">
+                                    <div class="text-xs text-gray-600 mb-1">Harga dasar</div>
+                                <div id="detail-harga" class="text-2xl font-bold text-gray-900">
+                                    Rp{{ number_format($item['harga'], 0, ',', '.') }}
                                 </div>
                             </div>
-                            <div class="bg-[#ececec] p-4">
-                                <div class="text-xs text-gray-600 mb-1">Nomor rak</div>
-                                <div id="detail-rak" class="text-lg font-bold text-gray-900">
-                                    {{ $first['rak'] ?? 'A-03' }}
+
+                            {{-- Stok & Nomor Rak --}}
+                            <div class="grid grid-cols-2 gap-3 mb-4">
+                                <div class="bg-[#ececec] p-4">
+                                    <div class="text-xs text-gray-600 mb-1">Stok tersisa</div>
+                                    <div id="detail-stok" class="text-lg font-bold {{ $item['stok'] > 0 ? 'text-gray-900' : 'text-red-600' }}">
+                                        {{ $item['stok'] > 0 ? $item['stok'] . ' unit' : 'Stok habis' }}
+                                    </div>
+                                </div>
+                                <div class="bg-[#ececec] p-4">
+                                    <div class="text-xs text-gray-600 mb-1">Nomor rak</div>
+                                    <div id="detail-rak" class="text-lg font-bold text-gray-900">
+                                        {{ $item['rak'] ?? 'A-03' }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        {{-- Lokasi & Kategori --}}
-                        <div id="detail-lokasi" class="text-xs font-bold text-gray-800 mb-3">
-                            {{ $first['lorong'] ?? 'Lorong A' }} &bull; Kategori {{ $first['kategori'] ?? 'Buku' }}
-                        </div>
+                                {{-- Lokasi & Kategori --}}
+                                <div id="detail-lokasi" class="text-xs font-bold text-gray-800 mb-3">
+                                    {{ $item['lorong'] ?? 'Lorong A' }} &bull; Kategori {{ $item['kategori'] ?? 'Buku' }}
+                                </div>
 
-                        <p class="text-[11px] text-gray-500 leading-relaxed">
-                            Data dibaca dari katalog dan stok dasar. Tidak ada transaksi pada tahap ini.
-                        </p>
+                                <p class="text-[11px] text-gray-500 leading-relaxed">
+                                    Data dibaca dari katalog dan stok dasar. Tidak ada transaksi pada tahap ini.
+                                </p>
+
+                            </div>
+                        @endforeach
                     @else
-                        <div class="bg-[#f5f5f5] p-6 text-center text-xs text-gray-500">
-                            Belum ada produk yang dipilih untuk ditampilkan detailnya.
-                        </div>
-                    @endif
+                        <p class="text-gray-500">Produk tidak ditemukan.</p>
+                    @endif                             
                 </div>
 
             </div>
